@@ -423,6 +423,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1807668835}
   - 96: {fileID: 1807668834}
+  - 114: {fileID: 1807668836}
   m_Layer: 0
   m_Name: Trail
   m_TagString: Untagged
@@ -487,6 +488,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 771806600}
   m_RootOrder: 0
+--- !u!114 &1807668836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1807668833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c6a92fb8e2b312439cd1c75e09a031e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myParticleSystem: {fileID: 128822, guid: e7d51a122ef0680478fe81b22c7c0c13, type: 2}
 --- !u!1 &1862387854
 GameObject:
   m_ObjectHideFlags: 0
