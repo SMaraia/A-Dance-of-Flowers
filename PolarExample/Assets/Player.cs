@@ -7,11 +7,13 @@ public class Player : MonoBehaviour {
     float theta;
     float r;
     float velTheta;
+    float velR;
     public GameObject parent;    
 
 	// Use this for initialization
 	void Start () {
         r = this.transform.position.magnitude;
+        velR = 0;
         theta = Mathf.Acos(this.transform.position.x / r);
 	}
 	
@@ -37,29 +39,36 @@ public class Player : MonoBehaviour {
 
         this.transform.position = new Vector2(r * Mathf.Cos(theta), r * Mathf.Sin(theta)) + (Vector2)parent.transform.position;
 
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.Mouse0))
         {
             velTheta += 0.005f;
-        }
-        else if (Input.GetKey(KeyCode.D))
+        } else if (Input.GetKey(KeyCode.Mouse1))
         {
             velTheta -= 0.005f;
         }
+
         velTheta *= 0.97f;
 
         theta += velTheta;
         //theta += 0.1f;
 
-        if (Input.GetKey(KeyCode.W))
+        if (Input.mouseScrollDelta.magnitude != 0)
         {
-            r += 0.05f;
+            velR += Input.mouseScrollDelta.magnitude * Input.mouseScrollDelta.normalized.y * 0.05f;
         }
-        else if (Input.GetKey(KeyCode.S))
+
+        r += velR;
+
+        if (r > 5.0f)
         {
-            r -= 0.05f;
+            r = 5.0f;
         }
-        if (r <= 0)
-            r = 0.0f;
+        velR *= 0.85f;
+
+        
+
+        if (r < 0.5f)
+            r = 0.5f;
 
 
         if (theta < 0)

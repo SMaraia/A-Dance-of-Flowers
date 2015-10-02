@@ -12,19 +12,19 @@ public class Planet : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKey(KeyCode.J))
+        if (Input.GetKey(KeyCode.A)) 
         {
             vel.x -= 0.005f;
         }
-        if (Input.GetKey(KeyCode.L))
+        if (Input.GetKey(KeyCode.D))
         {
             vel.x += 0.005f;
         }
-        if (Input.GetKey(KeyCode.I))
+        if (Input.GetKey(KeyCode.W))
         {
             vel.y += 0.005f;
         }
-        if (Input.GetKey(KeyCode.K))
+        if (Input.GetKey(KeyCode.S))
         {
             vel.y -= 0.005f;
         }
