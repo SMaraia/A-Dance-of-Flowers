@@ -8,6 +8,7 @@ public class Player : MonoBehaviour {
     float r;
     float velTheta;
     float velR;
+    public float RSensitivity = 0.05f;
     public GameObject parent;    
 
 	// Use this for initialization
@@ -39,23 +40,16 @@ public class Player : MonoBehaviour {
 
         this.transform.position = new Vector2(r * Mathf.Cos(theta), r * Mathf.Sin(theta)) + (Vector2)parent.transform.position;
 
-        if (Input.GetKey(KeyCode.Mouse0))
-        {
-            velTheta += 0.005f;
-        } else if (Input.GetKey(KeyCode.Mouse1))
-        {
-            velTheta -= 0.005f;
-        }
+        velTheta += 0.005f * Input.GetAxis("Spinning");
 
         velTheta *= 0.97f;
 
         theta += velTheta;
         //theta += 0.1f;
 
-        if (Input.mouseScrollDelta.magnitude != 0)
-        {
-            velR += Input.mouseScrollDelta.magnitude * Input.mouseScrollDelta.normalized.y * 0.05f;
-        }
+        Debug.Log(Input.GetAxis("TetherLength"));
+
+        velR += Input.GetAxis("TetherLength") * RSensitivity;
 
         r += velR;
 

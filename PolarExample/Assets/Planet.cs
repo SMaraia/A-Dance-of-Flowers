@@ -4,6 +4,7 @@ using System.Collections;
 public class Planet : MonoBehaviour {
 
     Vector2 vel;
+    public float velSensitivity = 0.005f;
 
 	// Use this for initialization
 	void Start () {
@@ -12,22 +13,9 @@ public class Planet : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKey(KeyCode.A)) 
-        {
-            vel.x -= 0.005f;
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            vel.x += 0.005f;
-        }
-        if (Input.GetKey(KeyCode.W))
-        {
-            vel.y += 0.005f;
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            vel.y -= 0.005f;
-        }
+
+        vel.x += velSensitivity * Input.GetAxis("Horizontal");
+        vel.y += velSensitivity * Input.GetAxis("Vertical");
 
         transform.position = (Vector2)transform.position + vel;
 
