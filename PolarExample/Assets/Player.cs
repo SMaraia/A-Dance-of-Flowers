@@ -73,5 +73,14 @@ public class Player : MonoBehaviour {
         {
             theta -= 2 * Mathf.PI;
         }
+	}	
+
+	void OnTriggerEnter2D(Collider2D other) {
+		if(other.gameObject.tag == "Flower")
+		{
+			Debug.Log("Captured Flower");
+
+			other.gameObject.GetComponent<Flower>().Capture(this);
+		}
 	}
 }
