@@ -16,7 +16,7 @@ public class CirclingHandler : MonoBehaviour {
 
     private void onCircle()
     {
-        Debug.Log("I am circled.");
+        this.GetComponent<Flower>().Capture();
     }
 
 

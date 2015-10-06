@@ -21,5 +21,5 @@ public class Planet : MonoBehaviour {
 
         vel *= .97f;
 
-	}
+	}	
 }
