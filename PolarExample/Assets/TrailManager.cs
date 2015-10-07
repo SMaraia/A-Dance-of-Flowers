@@ -37,6 +37,7 @@ public class TrailManager : MonoBehaviour {
     Point[] myPoints = new Point[1000];
     int oldPoint = 0;
     int nextPoint = 1;
+    int mask = 1 << 8;
 
     RaycastHit2D[] hit;
 
@@ -88,7 +89,7 @@ public class TrailManager : MonoBehaviour {
             ArrayList possibleIntersects = intersectStraight();
             if (possibleIntersects.Count > 0)
             {
-
+                
                 for (int i = 0; i < possibleIntersects.Count; ++i)
                 {
 
@@ -115,11 +116,13 @@ public class TrailManager : MonoBehaviour {
                         Debug.DrawLine(myPoints[myIntersect.x].pos, myPoints[myIntersect.y].pos, Color.red);
                         Instantiate(myParticleSystem, new Vector2(myPoints[myIntersect.x].pos.x, myPoints[myIntersect.x].pos.y), Quaternion.identity);
 
-                        for (int j = 1; j < myIntersect.w - myIntersect.x; ++j)
+                        int halfLength = (myIntersect.w - myIntersect.x) / 2;
+                        
+                        for (int j = 0; j < halfLength; ++j)
                         {
-                            int mask = 1 << 8;
-                            Physics2D.LinecastNonAlloc(myPoints[myIntersect.x].pos, myPoints[myIntersect.x + j].pos, hit, mask);
-                            Debug.DrawLine(myPoints[myIntersect.x].pos, myPoints[myIntersect.x + j].pos);
+                            
+                            Physics2D.LinecastNonAlloc(myPoints[myIntersect.x + j].pos, myPoints[myIntersect.x + j + halfLength].pos, hit, mask);
+                            Debug.DrawLine(myPoints[myIntersect.x + j].pos, myPoints[myIntersect.x + j + halfLength].pos);
                             for (int k = 0; k < hit.Length; ++k)
                             {
                                 if (!hit[k])
