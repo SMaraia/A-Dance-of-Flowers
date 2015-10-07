@@ -75,6 +75,15 @@ public class Player : MonoBehaviour {
         }
 	}	
 
+    public Vector2 CentriForce(Vector2 centerPos)
+    {
+        Vector2 returnForce = new Vector2(centerPos.x - transform.position.x, centerPos.y - transform.position.y);
+
+        returnForce *= velTheta * 0.05f;
+
+        return returnForce;
+    }
+
     //void OnTriggerEnter2D(Collider2D other) {
     //    if(other.gameObject.tag == "Flower")
     //    {
