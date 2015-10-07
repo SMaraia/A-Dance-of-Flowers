@@ -79,7 +79,7 @@ public class Player : MonoBehaviour {
     {
         Vector2 returnForce = new Vector2(centerPos.x - transform.position.x, centerPos.y - transform.position.y);
 
-        returnForce *= velTheta * 0.05f;
+        returnForce *= -Mathf.Abs(velTheta * 0.05f);
 
         return returnForce;
     }

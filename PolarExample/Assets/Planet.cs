@@ -18,7 +18,11 @@ public class Planet : MonoBehaviour {
         vel.x += velSensitivity * Input.GetAxis("Horizontal");
         vel.y += velSensitivity * Input.GetAxis("Vertical");
 
-        vel += player.GetComponent<Player>().CentriForce(new Vector2(transform.position.x, transform.position.y));
+        if (player != null)
+        {
+            vel += player.GetComponent<Player>().CentriForce(new Vector2(transform.position.x, transform.position.y));
+        }
+
         transform.position = (Vector2)transform.position + vel;
 
         vel *= .97f;
