@@ -12,6 +12,7 @@ GameObject:
   - 114: {fileID: 11437780}
   - 58: {fileID: 5845934}
   - 114: {fileID: 11494100}
+  - 114: {fileID: 11498652}
   m_Layer: 8
   m_Name: Flower
   m_TagString: Flower
@@ -26,7 +27,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 107100}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8, y: 8, z: 0}
+  m_LocalPosition: {x: -7.03488827, y: 2.65495491, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -55,13 +56,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a797f622953d2a144aa5f42b5da64d26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 0}
-  currentColor: {r: 1, g: 1, b: 1, a: 1}
-  transitionColor: {r: 1, g: 1, b: 1, a: 1}
-  nextColor: {r: 0, g: 0, b: 0, a: 0}
-  colorChangeDuration: 2
-  colorChangeStartTime: 0
-  changingColor: 0
   captured: 0
 --- !u!114 &11494100
 MonoBehaviour:
@@ -75,6 +69,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isCircled: 0
+--- !u!114 &11498652
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 107100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1649a07f187b32f4182d68f6548bb17f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 0}
+  currentColor: {r: 1, g: 1, b: 1, a: 1}
+  transitionColor: {r: 1, g: 1, b: 1, a: 1}
+  nextColor: {r: 1, g: 1, b: 1, a: 1}
+  colorChangeDuration: 2
+  colorChangeStartTime: 0
+  changingColor: 0
 --- !u!212 &21281150
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -107,7 +119,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: speed
+      value: .100000001
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 107100}

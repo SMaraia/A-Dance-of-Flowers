@@ -18,8 +18,4 @@ public class CirclingHandler : MonoBehaviour {
     {
         this.GetComponent<Flower>().Capture();
     }
-
-
-
-
 }

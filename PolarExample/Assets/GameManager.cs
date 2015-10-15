@@ -3,11 +3,15 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour {
 
-	public int gridWidth = 10;
-	public int gridHeight = 10;
+	public  float fieldWidth = 100.0f;
+	public  float fieldHeight = 100.0f;
 
-	public float distance = 2.0f;
+	public Vector2 startPoint;
 
+	//Flowers
+	public int maxSize = 200;
+	public int startSize = 50;
+	public int currentSize;
 	public Flower flower;
 	public Flower[] flowers;
 
@@ -19,9 +23,36 @@ public class GameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		flowers = new Flower[gridWidth * gridHeight];
+		flowers = new Flower[maxSize];
 
-		for(int i = 0; i < gridWidth; i++)
+
+		startPoint = new Vector2(-fieldWidth/2, -fieldHeight/2);
+
+		for (int i = 0; i < startSize; i++)
+		{
+			Flower f = flower;
+
+			f.transform.position = startPoint + new Vector2(Random.Range(0, fieldWidth), Random.Range(0,fieldHeight));
+
+			flowers[i] = Instantiate(flower);
+
+		}
+
+		currentSize = startSize;
+
+		for (int i = 0; i < currentSize / 4 ; i++)
+		{
+			if(i < startSize / 8)
+			{
+				flowers[i].gameObject.AddComponent<FlowerMover>().movementMode = MovementMode.ROTATE;
+			}
+			else
+			{
+				flowers[i].gameObject.AddComponent<FlowerMover>().movementMode = MovementMode.SIDETOSIDE;
+			}
+		}
+
+		/*for(int i = 0; i < gridWidth; i++)
 		{
 			for(int j = 0; j < gridHeight; j++)
 			{
@@ -31,7 +62,7 @@ public class GameManager : MonoBehaviour {
 
 				flowers[i * gridWidth + j] = Instantiate(flower);
 			}
-		}
+		}*/
 
 	}
 	
@@ -41,9 +72,9 @@ public class GameManager : MonoBehaviour {
 		{
 			timeSinceReset += resetInterval;
 
-			foreach(Flower f in flowers)
+			for(int i = 0; i < currentSize; i++)
 			{
-				f.setNeutral();
+				flowers[i].setNeutral();
 			}
 		}
 	}
