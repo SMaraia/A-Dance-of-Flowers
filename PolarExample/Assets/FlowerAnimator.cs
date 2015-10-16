@@ -3,7 +3,7 @@ using System.Collections;
 
 public class FlowerAnimator : MonoBehaviour {
 
-	private Flower flower;
+	private Node flower;
 
 	public SpriteRenderer spriteRenderer;
 	
@@ -18,7 +18,7 @@ public class FlowerAnimator : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		flower = gameObject.GetComponent<Flower>();
+		flower = gameObject.GetComponent<Node>();
 
 		spriteRenderer = GetComponent<SpriteRenderer>();
 		spriteRenderer.color = currentColor;

@@ -6,10 +6,10 @@ public enum MovementMode
 	ROTATE, SIDETOSIDE
 }
 
-public class FlowerMover : MonoBehaviour {
-	private Flower flower;
+public class FlowerAI : MonoBehaviour {
+	private Node flower;
 
-	public MovementMode movementMode = MovementMode.ROTATE;
+	public MovementMode movementMode;
 
 	public float speed = 0.1f;
 	public Vector2 rotationPoint = new Vector2(0, 0);
@@ -22,19 +22,26 @@ public class FlowerMover : MonoBehaviour {
 	private float timer, interpolant;
 
 	// Use this for initialization
-	void Start () {
-		flower = gameObject.GetComponent<Flower>();
+    void Start()
+    {
+        flower = gameObject.GetComponent<Node>();
 
 
-		float x = Random.Range(-5, 5);
-		float y = Random.Range(-5, 5);
 
-		Vector2 startPoint = gameObject.transform.position;
+        if (Random.Range(0, 1) == 1)
+            movementMode = MovementMode.ROTATE;
+        else
+            movementMode = MovementMode.SIDETOSIDE;
 
-		endPoint1 = startPoint + new Vector2(x, y);
-		endPoint2 = startPoint + new Vector2(-x, -y);
+        float x = Random.Range(-5, 5);
+        float y = Random.Range(-5, 5);
 
-	}
+        Vector2 startPoint = gameObject.transform.position;
+
+        endPoint1 = startPoint + new Vector2(x, y);
+        endPoint2 = startPoint + new Vector2(-x, -y);
+
+    }
 	
 	// Update is called once per frame
 	void Update () {

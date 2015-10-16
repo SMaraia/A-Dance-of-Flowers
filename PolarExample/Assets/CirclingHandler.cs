@@ -16,6 +16,6 @@ public class CirclingHandler : MonoBehaviour {
 
     private void onCircle()
     {
-        this.GetComponent<Flower>().Capture();
+        this.GetComponent<Node>().Capture();
     }
 }

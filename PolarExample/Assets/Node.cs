@@ -1,17 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Flower : MonoBehaviour {
+public class Node : MonoBehaviour {
+
+    public int score = 10;  // The score total you get when capturing the node.
 
 	public bool captured = false;
 
 	private GameManager gameManager;
-	private FlowerAnimator animator;
 
 	// Use this for initialization
 	void Start () {
 		gameManager = FindObjectOfType<GameManager>();
-		animator = GetComponent<FlowerAnimator>();
 	}
 	
 	// Update is called once per frame
@@ -27,7 +27,7 @@ public class Flower : MonoBehaviour {
 			gameManager.playerScore++;
 			captured = true;
 
-			animator.OnCapture();
+            gameObject.SendMessage("OnCapture");
 		}
 	}
 
@@ -36,7 +36,8 @@ public class Flower : MonoBehaviour {
 		if(captured)
 		{
 			captured = false;
-			animator.OnNeutral();
+
+            gameObject.SendMessage("OnNeutral");
 		}
 	}
 }
