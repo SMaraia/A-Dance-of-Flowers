@@ -24,7 +24,7 @@ public class Node : MonoBehaviour {
 	{
 		if(!captured)
 		{
-			gameManager.playerScore++;
+			gameManager.playerScore += score;
 			captured = true;
 
             gameObject.SendMessage("OnCapture");

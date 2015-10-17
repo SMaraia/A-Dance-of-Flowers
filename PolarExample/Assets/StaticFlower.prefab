@@ -14,7 +14,7 @@ GameObject:
   - 114: {fileID: 11494100}
   - 114: {fileID: 11498652}
   m_Layer: 8
-  m_Name: Flower
+  m_Name: StaticFlower
   m_TagString: Flower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53,10 +53,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 107100}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a797f622953d2a144aa5f42b5da64d26, type: 3}
+  m_Script: {fileID: 11500000, guid: 37c71281ae3d53f4f9054dd9bb6afefb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  captured: 0
+  timeStartToDeath: 10
+  timeCapturedToDeath: 4
+  timer: 0
 --- !u!114 &11494100
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -3,12 +3,13 @@ using System.Collections;
 
 public class FlowerAnimator : MonoBehaviour {
 
-	private Node flower;
+	private Node node;
+    private AIFlower aIFlower;
 
 	public SpriteRenderer spriteRenderer;
 	
-	public Color currentColor = Color.white;
-	public Color transitionColor = Color.white;
+	public Color currentColor = new Color(1, 1, 1, 0);
+    public Color transitionColor = new Color(1, 1, 1, 0);
 	public Color nextColor = Color.white;
 	
 	public float colorChangeDuration = 2.0f;
@@ -18,11 +19,13 @@ public class FlowerAnimator : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		flower = gameObject.GetComponent<Node>();
+		node = gameObject.GetComponent<Node>();
+        aIFlower = gameObject.GetComponent<AIFlower>();
 
 		spriteRenderer = GetComponent<SpriteRenderer>();
 		spriteRenderer.color = currentColor;
-		changingColor = false;
+
+        ChangeColorRandom();
 	}
 	
 	// Update is called once per frame
@@ -31,8 +34,8 @@ public class FlowerAnimator : MonoBehaviour {
 		{
 			float colorChangeTime = Time.time - colorChangeStartTime;
 			transitionColor = Color.Lerp(currentColor, nextColor, colorChangeTime / colorChangeDuration);
-			
-			spriteRenderer.color = transitionColor;
+
+            spriteRenderer.color = transitionColor;
 			
 			if(colorChangeTime > colorChangeDuration)
 			{
@@ -41,7 +44,7 @@ public class FlowerAnimator : MonoBehaviour {
 			}
 		}
 		
-		if (flower.captured)
+		if (node.captured)
 		{
 			gameObject.transform.Rotate (0, 0 , Time.deltaTime * 60);
 		}
@@ -74,4 +77,9 @@ public class FlowerAnimator : MonoBehaviour {
 	{
 		ChangeColorRandom();
 	}
+
+    public void SetAlpha(float alpha)
+    {
+        spriteRenderer.color = new Color(transitionColor.r, transitionColor.g, transitionColor.b, transitionColor.a * alpha);
+    }
 }
