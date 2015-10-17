@@ -78,6 +78,7 @@ public class FlowerAnimator : MonoBehaviour {
 		ChangeColorRandom();
 	}
 
+    // Manually sets the alpha of the sprite. Useful for fading in and out without effect color transitions.
     public void SetAlpha(float alpha)
     {
         spriteRenderer.color = new Color(transitionColor.r, transitionColor.g, transitionColor.b, transitionColor.a * alpha);

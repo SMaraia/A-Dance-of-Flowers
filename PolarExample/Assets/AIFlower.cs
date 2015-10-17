@@ -1,13 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// Common component for all flowers. Handles the lifespan and death of flowers.
+/// </summary>
 public class AIFlower : MonoBehaviour {
-    public float timeStartToDeath = 20.0f;
-    public float timeCaptureToDeath = 6.0f;
+    public float timeStartToDeath = 20.0f;  // LifeSpan starting from time of creation
+    public float timeCaptureToDeath = 6.0f; // LifeSpan starting from time of capture
 
-    public float remainingTime;
-    public float timer;
-    public float timeStart;
+    public float remainingTime; // Time remaining in life
+    public float timer;         // Time since the starting time
+    public float timeStart;     // Time of creation or capture.
 
     private Node node;
     private FlowerAnimator flowerAnimator;
@@ -28,28 +31,28 @@ public class AIFlower : MonoBehaviour {
         {
             remainingTime = timeStartToDeath - timer;
             
-            if (remainingTime < 3)
-            {
-                flowerAnimator.SetAlpha(remainingTime / 3);
-            }
+ 
 
             if (remainingTime < 0)
             {
                 GameObject.Destroy(gameObject);
+            }
+            if (remainingTime < 3)
+            {
+                flowerAnimator.SetAlpha(remainingTime / 3);
             }
         }
         else
         {
             remainingTime = timeCaptureToDeath - timer;
 
-            if (remainingTime < 3)
-            {
-                flowerAnimator.SetAlpha(remainingTime / 3);
-            }
-
             if (remainingTime < 0)
             {
                 GameObject.Destroy(gameObject);
+            }
+            if (remainingTime < 3)
+            {
+                flowerAnimator.SetAlpha(remainingTime / 3);
             }
         }
 	}

@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// Moves a flower in-between two points
+/// </summary>
 public class AIFlowerSideToSide : MonoBehaviour
 {
     private Node node;
@@ -8,7 +11,7 @@ public class AIFlowerSideToSide : MonoBehaviour
     public float period = 4.0f;
 
     private Vector2 endPoint1, endPoint2;
-    private float timer, interpolant;
+    private float interpolant;
 
     // Use this for initialization
     void Start()
@@ -29,9 +32,7 @@ public class AIFlowerSideToSide : MonoBehaviour
     {
         if (!node.captured)
         {
-            timer += Time.deltaTime;
-
-            interpolant = Mathf.Sin(timer / period * .5f) / 2 + 0.5f;
+            interpolant = Mathf.Sin(Time.time / period * .5f) / 2 + 0.5f;
 
             transform.position = Vector2.Lerp(endPoint1, endPoint2, interpolant);
 

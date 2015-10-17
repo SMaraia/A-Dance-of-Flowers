@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-// Rotates the Flower Node around a given point
+/// <summary>
+/// Rotates the Flower Node around a point
+/// </summary>
 public class AIFlowerRotate : MonoBehaviour
 {
     private Node node;
@@ -21,7 +23,6 @@ public class AIFlowerRotate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (!node.captured)
         {
             transform.RotateAround(rotationPoint, rotationAxis, speed);

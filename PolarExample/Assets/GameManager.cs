@@ -1,27 +1,26 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
 public class GameManager : MonoBehaviour
 {
-
     public float fieldWidth = 100.0f;
     public float fieldHeight = 100.0f;
 
     public Vector2 startPoint;
 
-    //Flowers
-    public int maxSize = 200;
-    public int startSize = 50;
-    public int currentSize;
+    //Nodes
+    public int maxSize = 200;   // The maximum number of nodes
+    public int startSize = 50;  // The starting number of nodes
+    public int currentSize;    // The current number of nodes in the scene
 
-    public Node[] prefabs;
+    public Node[] prefabs;  // Array of node prefabs to instantiate
 
-    public GameObject[] nodes;
+    public GameObject[] nodes;  // Array of nodes in the scene
 
     public int playerScore = 0;
 
-    public float gameLength = 60.0f;
-    public float updateInterval = 10.0f;
+    public float updateInterval = 10.0f;    // Interval between adding new nodes.
     public float timeSinceReset = 0.0f;
 
     // Use this for initialization
@@ -32,9 +31,9 @@ public class GameManager : MonoBehaviour
 
         startPoint = new Vector2(-fieldWidth / 2, -fieldHeight / 2);
 
-        currentSize = startSize;
+        currentSize = 0;
 
-        AddNodesToScene(15);
+        AddNodesToScene(startSize);
     }
 
     // Update is called once per frame
@@ -53,6 +52,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Adds given number of nodes to the scene
+    /// </summary>
+    /// <param name="amount">The number of new nodes</param>
     void AddNodesToScene(int amount)
     {
         Debug.Log("Adding " + amount + " nodes.");
@@ -63,14 +66,14 @@ public class GameManager : MonoBehaviour
 
         for (int i = nodes.Length; i < currentSize; i++)
         {
+            // Picks a random prefab
             int j = Random.Range(0, prefabs.Length);
-
             Node node = prefabs[j];
 
+            // Sets a random position for prefab.
             node.transform.position = startPoint + new Vector2(Random.Range(0, fieldWidth), Random.Range(0, fieldHeight));
 
             Instantiate(node);
-
         }
     }
 

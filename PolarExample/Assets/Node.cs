@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// Handles whether an object is captured or not.
+/// </summary>
 public class Node : MonoBehaviour {
 
     public int score = 10;  // The score total you get when capturing the node.
