@@ -25,6 +25,7 @@ public class AILanternMover : MonoBehaviour
         velocity = new Vector2(Random.Range(-1*maxSpeed, maxSpeed), Random.Range(-1*maxSpeed*.8F, maxSpeed*.8F));
 
         position = new Vector2(-10 + Random.Range(0, 20), -10 + Random.Range(0, 20));
+        prevPosition = position;
     }
 
     // Update is called once per frame
@@ -36,9 +37,16 @@ public class AILanternMover : MonoBehaviour
 
         if (!node.captured)
         {
+            prevPosition = position;
             position.y = position.x + amplitude * Mathf.Sin(frequency * position.x);
             position += velocity;
-
+            Vector2 facing = position - prevPosition;
+            //float angle = Mathf.Atan2(facing.y, facing.x) * Mathf.Rad2Deg;
+            //Vector3 rotation = new Vector3(0, 0, angle);
+            //gameObject.transform.Rotate( rotation * Time.deltaTime);
+            float angle = Mathf.Atan2(facing.y, facing.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.AngleAxis(angle+90, Vector3.forward);
+      
         }
     }
 }
