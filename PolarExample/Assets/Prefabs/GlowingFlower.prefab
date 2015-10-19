@@ -12,12 +12,12 @@ GameObject:
   - 114: {fileID: 11437780}
   - 58: {fileID: 5845934}
   - 114: {fileID: 11494100}
-  - 114: {fileID: 11498652}
-  - 114: {fileID: 11401846}
-  - 114: {fileID: 11401802}
+  - 114: {fileID: 11488600}
+  - 114: {fileID: 11478874}
+  - 114: {fileID: 11409938}
   m_Layer: 8
-  m_Name: SideToSideFlower
-  m_TagString: Flower
+  m_Name: GlowingFlower
+  m_TagString: Node
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,7 +29,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 107100}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.46599388, y: -7.4704361, z: 0}
+  m_LocalPosition: {x: .00999999978, y: 2.49000001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -47,7 +47,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: .5
---- !u!114 &11401802
+--- !u!114 &11409938
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -55,23 +55,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 107100}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e27fd2602a084a444a8c12a3875c0684, type: 3}
+  m_Script: {fileID: 11500000, guid: 1649a07f187b32f4182d68f6548bb17f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score: 10
-  captured: 0
---- !u!114 &11401846
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 107100}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6afbc805b3fdb2b48b3553c90ace1b2b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  period: 4
+  spriteRenderer: {fileID: 0}
+  glowingLight: {fileID: 0}
+  currentColor: {r: 1, g: 1, b: 1, a: 0}
+  transitionColor: {r: 1, g: 1, b: 1, a: 0}
+  nextColor: {r: 1, g: 1, b: 1, a: 1}
+  colorChangeDuration: 2
+  colorChangeStartTime: 0
+  changingColor: 0
+  isGlowingFlower: 1
 --- !u!114 &11437780
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -83,11 +78,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37c71281ae3d53f4f9054dd9bb6afefb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeStartToDeath: 20
+  timeStartToDeath: 50
   timeCaptureToDeath: 6
   remainingTime: 0
   timer: 0
   timeStart: 0
+--- !u!114 &11478874
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 107100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc817167238cce2488267a9c1eee0e4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocity: {x: 0, y: 0}
+--- !u!114 &11488600
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 107100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e27fd2602a084a444a8c12a3875c0684, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: 30
+  captured: 0
 --- !u!114 &11494100
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -100,24 +120,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isCircled: 0
---- !u!114 &11498652
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 107100}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1649a07f187b32f4182d68f6548bb17f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 0}
-  currentColor: {r: 1, g: 1, b: 1, a: 0}
-  transitionColor: {r: 1, g: 1, b: 1, a: 0}
-  nextColor: {r: 1, g: 1, b: 1, a: 1}
-  colorChangeDuration: 2
-  colorChangeStartTime: 0
-  changingColor: 0
 --- !u!212 &21281150
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -154,6 +156,22 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: speed
       value: .100000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: Node
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: timeStartToDeath
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: isGlowingFlower
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: score
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

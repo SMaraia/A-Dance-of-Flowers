@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 
 public class GameManager : MonoBehaviour
 {
     public float fieldWidth = 100.0f;
     public float fieldHeight = 100.0f;
+
 
     public Vector2 startPoint;
 
@@ -23,6 +25,9 @@ public class GameManager : MonoBehaviour
     public float updateInterval = 10.0f;    // Interval between adding new nodes.
     public float timeSinceReset = 0.0f;
 
+    private Text timerText;
+    private Text scoreText;
+
     // Use this for initialization
     void Start()
     {
@@ -34,6 +39,9 @@ public class GameManager : MonoBehaviour
         currentSize = 0;
 
         AddNodesToScene(startSize);
+
+        timerText = GameObject.FindWithTag("TimeText").GetComponent<Text>();
+        scoreText = GameObject.FindWithTag("ScoreText").GetComponent<Text>();
     }
 
     // Update is called once per frame
@@ -41,6 +49,9 @@ public class GameManager : MonoBehaviour
     {
         nodes = GameObject.FindGameObjectsWithTag("Node");
         currentSize = nodes.Length;
+
+        scoreText.text = "Score: " + playerScore;
+        timerText.text = "Time Left: " + (120 - (int)Time.time);
 
         if (Time.time - timeSinceReset > updateInterval)
         {
@@ -77,9 +88,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void OnGUI()
+   /* void OnGUI()
     {
         GUI.Label(new Rect(0, 0, 128, 64), "Score: " + playerScore);
         GUI.Label(new Rect(Screen.width - 128, 0, 128, 64), "Time: " + Time.time);
-    }
+    }*/
 }
