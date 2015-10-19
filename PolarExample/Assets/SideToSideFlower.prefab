@@ -14,8 +14,9 @@ GameObject:
   - 114: {fileID: 11494100}
   - 114: {fileID: 11498652}
   - 114: {fileID: 11401846}
+  - 114: {fileID: 11401802}
   m_Layer: 8
-  m_Name: RotatingFlower
+  m_Name: SideToSideFlower
   m_TagString: Flower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,7 +29,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 107100}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.03488827, y: 2.65495491, z: 0}
+  m_LocalPosition: {x: 5.46599388, y: -7.4704361, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -46,6 +47,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: .5
+--- !u!114 &11401802
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 107100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e27fd2602a084a444a8c12a3875c0684, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: 10
+  captured: 0
 --- !u!114 &11401846
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -54,11 +68,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 107100}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 497ce00c46378f44db759ee810c8b188, type: 3}
+  m_Script: {fileID: 11500000, guid: 6afbc805b3fdb2b48b3553c90ace1b2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: .100000001
-  rotationPoint: {x: 0, y: 0}
+  period: 4
 --- !u!114 &11437780
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -70,9 +83,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37c71281ae3d53f4f9054dd9bb6afefb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeStartToDeath: 10
-  timeCapturedToDeath: 4
+  timeStartToDeath: 20
+  timeCaptureToDeath: 6
+  remainingTime: 0
   timer: 0
+  timeStart: 0
 --- !u!114 &11494100
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -97,8 +112,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 0}
-  currentColor: {r: 1, g: 1, b: 1, a: 1}
-  transitionColor: {r: 1, g: 1, b: 1, a: 1}
+  currentColor: {r: 1, g: 1, b: 1, a: 0}
+  transitionColor: {r: 1, g: 1, b: 1, a: 0}
   nextColor: {r: 1, g: 1, b: 1, a: 1}
   colorChangeDuration: 2
   colorChangeStartTime: 0
