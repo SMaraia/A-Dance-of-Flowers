@@ -9,6 +9,7 @@ public class Player : MonoBehaviour {
     float velTheta;
     float velR;
     public float RSensitivity = 0.05f;
+    float prevAngle;
     public GameObject parent;    
 
 	// Use this for initialization
@@ -16,11 +17,14 @@ public class Player : MonoBehaviour {
         r = this.transform.position.magnitude;
         velR = 0;
         theta = Mathf.Acos(this.transform.position.x / r);
+        prevAngle = 0;
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
 
+        #region Legacy Keyboard movement
         //if (Input.GetKey(KeyCode.A))
         //{
         //    this.transform.position = new Vector2(transform.position.x - .1f, transform.position.y);
@@ -37,8 +41,36 @@ public class Player : MonoBehaviour {
         //{
         //    this.transform.position = new Vector2(transform.position.x, transform.position.y - .1f);
         //}
+        #endregion
 
         this.transform.position = new Vector2(r * Mathf.Cos(theta), r * Mathf.Sin(theta)) + (Vector2)parent.transform.position;
+
+        Vector2 spinStickRaw = new Vector2(Input.GetAxis("SpinStickHorizontal"), Input.GetAxis("SpinStickVertical"));
+
+        float spinStickAngle = Vector2.Angle(new Vector2(0,1), spinStickRaw);
+
+        if (Vector2.Dot(new Vector2(1, 0), spinStickRaw) > 0)
+        {
+            spinStickAngle = 360.0f - spinStickAngle;
+        }
+
+        float deltaAngle = (spinStickAngle - prevAngle);
+
+        Debug.Log("Right Stick: " + spinStickRaw.x +", " + spinStickRaw.y);
+
+        Debug.Log("Angle: " + spinStickAngle); 
+
+        prevAngle = spinStickAngle;
+        Debug.Log("deltaAngle: " + deltaAngle);
+
+        if (deltaAngle < 0.0f &&  spinStickRaw.magnitude > 0.85)
+        {
+            velTheta -= 0.005f;
+        }
+        else if (deltaAngle > 0.0f && spinStickRaw.magnitude > 0.85)
+        {
+            velTheta += 0.005f;
+        }
 
         velTheta += 0.005f * Input.GetAxis("Spinning");
 
