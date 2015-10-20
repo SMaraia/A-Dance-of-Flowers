@@ -61,6 +61,13 @@ public class GameManager : MonoBehaviour
 
             AddNodesToScene(15);
         }
+
+        if (Time.time > 120)
+        {
+            PlayerPrefs.SetInt("SCORE", playerScore);
+            Application.LoadLevel("EndScene");
+            
+        }
     }
 
     /// <summary>
