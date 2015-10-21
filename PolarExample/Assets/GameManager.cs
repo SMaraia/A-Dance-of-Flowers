@@ -2,7 +2,6 @@
 using System.Collections;
 using UnityEngine.UI;
 
-
 public class GameManager : MonoBehaviour
 {
     public float fieldWidth = 100.0f;
@@ -25,6 +24,9 @@ public class GameManager : MonoBehaviour
     public float updateInterval = 10.0f;    // Interval between adding new nodes.
     public float timeSinceReset = 0.0f;
 
+    public int totalRange;  // Total size of spawn range
+    public float[] spawnRates;  // Array of spawn rates.
+
     private Text timerText;
     private Text scoreText;
 
@@ -38,10 +40,23 @@ public class GameManager : MonoBehaviour
 
         currentSize = 0;
 
-        AddNodesToScene(startSize);
-
         timerText = GameObject.FindWithTag("TimeText").GetComponent<Text>();
         scoreText = GameObject.FindWithTag("ScoreText").GetComponent<Text>();
+
+        foreach (Node prefab in prefabs)
+        {
+            totalRange += prefab.spawnRange;
+        }
+
+        // Calculates spawn rates for debugging purposes
+        spawnRates = new float[prefabs.Length];
+        for (int i = 0; i < spawnRates.Length; i++)
+        {
+            spawnRates[i] = prefabs[i].spawnRange / (float)totalRange;
+            Debug.Log(spawnRates[i]);
+        }
+
+        AddNodesToScene(startSize);
     }
 
     // Update is called once per frame
@@ -66,7 +81,7 @@ public class GameManager : MonoBehaviour
         {
             PlayerPrefs.SetInt("SCORE", playerScore);
             Application.LoadLevel("EndScene");
-            
+
         }
     }
 
@@ -78,26 +93,30 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Adding " + amount + " nodes.");
 
-        currentSize += amount;
+        currentSize = Mathf.Min(currentSize + amount, maxSize);
 
-        currentSize = Mathf.Min(currentSize, maxSize);
 
         for (int i = nodes.Length; i < currentSize; i++)
         {
-            // Picks a random prefab
-            int j = Random.Range(0, prefabs.Length);
-            Node node = prefabs[j];
+
+            int j = Random.Range(0, totalRange);
+            int spawnIndex = 0;
+
+            while (j > prefabs[spawnIndex].spawnRange)
+            {
+                j -= prefabs[spawnIndex].spawnRange;
+
+                spawnIndex++;
+            }
+
+
+            Node node = prefabs[spawnIndex];
 
             // Sets a random position for prefab.
             node.transform.position = startPoint + new Vector2(Random.Range(0, fieldWidth), Random.Range(0, fieldHeight));
 
             Instantiate(node);
         }
-    }
 
-   /* void OnGUI()
-    {
-        GUI.Label(new Rect(0, 0, 128, 64), "Score: " + playerScore);
-        GUI.Label(new Rect(Screen.width - 128, 0, 128, 64), "Time: " + Time.time);
-    }*/
+    }
 }

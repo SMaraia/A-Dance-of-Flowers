@@ -10,6 +10,11 @@ public class Node : MonoBehaviour {
 
 	public bool captured = false;
 
+    /// <summary>
+    /// Determines the frequency of the node being spawned. Higher values means increased spawn rate.
+    /// </summary>
+    public int spawnRange = 10;
+
 	private GameManager gameManager;
 
 	// Use this for initialization

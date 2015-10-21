@@ -45,7 +45,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 107100}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.03000021, y: .949999988, z: 0}
+  m_LocalPosition: {x: -9.97936249, y: -8.54352188, z: 0}
   m_LocalScale: {x: .741614521, y: .741614461, z: .741614461}
   m_Children:
   - {fileID: 488740}
@@ -139,6 +139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 35
   captured: 0
+  spawnRange: 5
 --- !u!114 &11494100
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -246,6 +247,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: maxSpeed
       value: .0700000003
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: spawnRange
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

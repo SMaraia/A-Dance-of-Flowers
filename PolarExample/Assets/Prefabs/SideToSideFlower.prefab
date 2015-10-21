@@ -29,7 +29,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 107100}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.71192789, y: 2.45341206, z: 0}
+  m_LocalPosition: {x: 6.45464897, y: 2.37215137, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -60,6 +60,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 10
   captured: 0
+  spawnRange: 15
 --- !u!114 &11401846
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -160,6 +161,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_TagString
       value: Node
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: spawnRange
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
