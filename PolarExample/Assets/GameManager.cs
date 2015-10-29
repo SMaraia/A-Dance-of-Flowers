@@ -66,9 +66,9 @@ public class GameManager : MonoBehaviour
         currentSize = nodes.Length;
 
         scoreText.text = "Score: " + playerScore;
-        timerText.text = "Time Left: " + (120 - (int)Time.time);
+        timerText.text = "Time Left: " + (120 - (int)Time.timeSinceLevelLoad);
 
-        if (Time.time - timeSinceReset > updateInterval)
+        if (Time.timeSinceLevelLoad - timeSinceReset > updateInterval)
         {
             timeSinceReset += updateInterval;
 
@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour
             AddNodesToScene(15);
         }
 
-        if (Time.time > 120)
+        if (Time.timeSinceLevelLoad > 120)
         {
             PlayerPrefs.SetInt("SCORE", playerScore);
             Application.LoadLevel("EndScene");

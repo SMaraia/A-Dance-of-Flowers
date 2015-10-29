@@ -13,5 +13,10 @@ public class EndManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
+        if(Input.GetAxis("Start") != 0)
+        {
+            Application.LoadLevel("Circles");
+        }
+
 	}
 }
