@@ -8,7 +8,7 @@ public class Player : MonoBehaviour {
     float r;
     float velTheta;
     float velR;
-    public float RSensitivity = 0.05f;
+    public float RSensitivity = 3.125f;
     float prevAngle;
     public GameObject parent;    
 
@@ -56,12 +56,8 @@ public class Player : MonoBehaviour {
 
         float deltaAngle = (spinStickAngle - prevAngle);
 
-        Debug.Log("Right Stick: " + spinStickRaw.x +", " + spinStickRaw.y);
-
-        Debug.Log("Angle: " + spinStickAngle); 
 
         prevAngle = spinStickAngle;
-        Debug.Log("deltaAngle: " + deltaAngle);
 
         if (deltaAngle < 0.0f &&  spinStickRaw.magnitude > 0.85)
         {
@@ -72,17 +68,17 @@ public class Player : MonoBehaviour {
             velTheta += 0.005f;
         }
 
-        velTheta += 0.005f * Input.GetAxis("Spinning");
+        
+        velTheta += 0.3125f * Time.deltaTime * Input.GetAxis("Spinning");
 
         velTheta *= 0.97f;
 
         theta += velTheta;
         //theta += 0.1f;
 
-        Debug.Log(Input.GetAxis("TetherLength"));
 
-        velR += Input.GetAxis("TetherLength") * RSensitivity;
-
+        velR += Input.GetAxis("TetherLength") * RSensitivity * Time.deltaTime;
+        Debug.Log(RSensitivity);
         r += velR;
 
         if (r > 5.0f)
